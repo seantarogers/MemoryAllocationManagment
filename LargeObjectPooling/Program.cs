@@ -14,8 +14,7 @@
         private const string Name = "sean";
         private const string Mobile = "07765067136";
         private static Customer customer;
-        private static Customer smallCustomer;
-
+        
         private static void Main(string[] args)
         {
             //AllocateEachTimeToTheLargeObjectHeap();
