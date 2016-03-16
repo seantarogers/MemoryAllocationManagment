@@ -13,10 +13,10 @@
         //Lesson - it is cheaper to allocate more memory, than find a slot in a fragmented heap
 
         //notes
-        //fragmentation doesnt happen the first time around, they all slot in after each other
-        //when GC has happened and picked up some of them, then it leaves holes
+        //1. fragmentation doesnt happen the first time around, they all slot in after each other
+        //2. when GC has happened and picked up some of them, then it leaves holes
 
-        //so
+        //steps
         //1. allocate 5 large objects
         //2. 3 will be picked up when you grab a snapshot, leaving 3 holes
         //3. allocte 2 more of the same size and they should fit in.
@@ -40,9 +40,10 @@
             int newObjectSize = 10;
             while (i <= 100000)
             {
-                //1. allocate 1 large customers
+                //1. allocate 1 large customers so that the object does not fit
                 customerOne = CreateCustomer(0);
 
+                //keep shifting the size
                 customerTwo = null;
                 if (IsOdd(i))
                 {
