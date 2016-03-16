@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargeObjectHeapFragmentation", "LargeObjectHeapFragmentation\LargeObjectHeapFragmentation.csproj", "{F9ADA8BC-81C5-4F31-A098-9F5486BC6058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargeObjectPooling", "LargeObjectPooling\LargeObjectPooling.csproj", "{FB029914-D9F5-4E57-94FB-0A887F73BFAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9ADA8BC-81C5-4F31-A098-9F5486BC6058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9ADA8BC-81C5-4F31-A098-9F5486BC6058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9ADA8BC-81C5-4F31-A098-9F5486BC6058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9ADA8BC-81C5-4F31-A098-9F5486BC6058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB029914-D9F5-4E57-94FB-0A887F73BFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB029914-D9F5-4E57-94FB-0A887F73BFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB029914-D9F5-4E57-94FB-0A887F73BFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB029914-D9F5-4E57-94FB-0A887F73BFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
