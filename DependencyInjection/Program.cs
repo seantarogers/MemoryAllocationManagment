@@ -1,15 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DependencyInjection
+﻿namespace DependencyInjection
 {
-    class Program
+    using System;
+
+    using SimpleInjector;
+    using SimpleInjector.Extensions.LifetimeScoping;
+
+    static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            var container = new Container();
+
+            container.Register<ITransientService, TransientService>(new LifetimeScopeLifestyle());
+            container.Register<ITransientQueryHandler, TransientQueryHandler>(new LifetimeScopeLifestyle());
+
+            Console.WriteLine("begin resolving from the container");
+            Console.ReadLine();
+            while (true)
+            {
+                using (container.BeginLifetimeScope())
+                {
+                    var queryHandler = container.GetInstance<ITransientQueryHandler>();
+                    var dto = queryHandler.Handle();
+                }
+            }
+
+
+
+            //const string HttpLocalhost = "http://localhost:8094";
+            //using (WebApp.Start(HttpLocalhost))
+            //{
+            //    Console.WriteLine("Web api started on 8094");
+            //    Console.ReadLine();
+            //}
         }
     }
 }

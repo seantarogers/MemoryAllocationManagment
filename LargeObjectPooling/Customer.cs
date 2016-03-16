@@ -1,5 +1,8 @@
 ﻿namespace LargeObjectPooling
 {
+    using System;
+    using System.Runtime;
+
     public class Customer
     {
         private string Name { get; set; }
@@ -13,6 +16,23 @@
             Name = name;
             MobileNumberNumber = mobileNumber;
 
+            var myReferenceType = new MyReferenceType();
+
+
+            GCSettings.LatencyMode = GCLatencyMode.LowLatency;
+
+
+            GC.Collect(2);
+
+            GCSettings.LargeObjectHeapCompactionMode 
+                = GCLargeObjectHeapCompactionMode.CompactOnce;
+
+
+
+            GC.SuppressFinalize(this);
+
+            GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
+
         }
 
         public void UpdateName(string name)
@@ -24,5 +44,9 @@
         {
             MobileNumberNumber = phoneNumber;
         }
+    }
+
+    public class MyReferenceType
+    {
     }
 }

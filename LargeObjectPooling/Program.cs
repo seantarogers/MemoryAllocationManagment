@@ -17,8 +17,8 @@
         
         private static void Main(string[] args)
         {
-            //AllocateEachTimeToTheLargeObjectHeap();
-            AllocateOnceAndUpdateTheReference();
+            AllocateEachTimeToTheLargeObjectHeap();
+            //AllocateOnceAndUpdateTheReference();
         }
 
         private static void AllocateOnceAndUpdateTheReference()
