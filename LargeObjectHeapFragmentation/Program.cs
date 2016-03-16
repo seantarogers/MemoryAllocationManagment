@@ -1,15 +1,15 @@
 ﻿namespace LargeObjectHeapFragmentation
 {
     using System;
+    using System.Diagnostics;
     using System.Runtime;
 
     public static class Program
     {
         static Customer customerOne;
         static Customer customerTwo;
-        static Customer customerSix;
-        static Customer customerSeven;
-
+        static Customer customerThree;
+        
         //Lesson - it is cheaper to allocate more memory, than find a slot in a fragmented heap
 
         //notes
@@ -27,9 +27,79 @@
             ShowFragmentationAndReuseOfSegmentsWithSmallerObjects();
             ShowFragmentationAndTheUseOfStandardBufferSizes();
             ShowProgramaticCompactionOfHeap();
+            ShowPerformanceOfRandomSizeAllocationsTotheHeap();
+            ShowPerformanceOfManagedSizeAllocationsTotheHeap();
+        }
+
+        private static void ShowPerformanceOfRandomSizeAllocationsTotheHeap()
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            int i = 0;
+            int newObjectSize = 10;
+            while (i <= 100000)
+            {
+                //1. allocate 1 large customers
+                customerOne = CreateCustomer(0);
+
+                customerTwo = null;
+                if (IsOdd(i))
+                {
+                    newObjectSize = newObjectSize - 7500000;
+                    customerTwo = CreateCustomer(newObjectSize);
+                }
+                else
+                {
+                    newObjectSize = newObjectSize + 7500000;
+                    customerTwo = CreateCustomer(newObjectSize);
+                }
+
+                customerThree = CreateCustomer(0);
+                Console.WriteLine("allocation iteration: {0}", i);
+                i++;
+            }
+
+            stopwatch.Stop();
+            Console.WriteLine(
+                "time taken to allocate/deallocate 200000 to a fragmented LOH: {0}",
+                stopwatch.Elapsed);
+            Console.ReadLine();
+        }
 
 
-            //ShowPerformanceGainViaManagedSizeOfAllocations()
+        private static void ShowPerformanceOfManagedSizeAllocationsTotheHeap()
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var i = 0;
+            while (i <= 100000)
+            {
+                //1. allocate 1 large customers
+                customerOne = CreateCustomer(0);
+
+                if (PDFIsBiggerThanStandard())
+                {
+                    customerTwo = CreateCustomer(1000000);
+                }
+
+                customerThree = CreateCustomer(0);
+
+                Console.WriteLine("allocation iteration: {0}", i);                
+                i++;
+            }
+
+            stopwatch.Stop();
+            Console.WriteLine(
+                "time taken to allocate/deallocate 200000 to a fragmented LOH: {0}",
+                stopwatch.Elapsed);
+            Console.ReadLine();
+        }
+
+        public static bool IsOdd(int value)
+        {
+            return value % 2 != 0;
         }
 
         private static void ShowFragmentationAndTheUseOfStandardBufferSizes()
@@ -46,7 +116,7 @@
             if (PDFIsBiggerThanStandard())
             {
                 // allocate a second customer which has a larger PDF by 50%, but double that allocation to be 2mb
-                customerSix = CreateCustomer(1000000);
+                customerThree = CreateCustomer(1000000);
             }
 
             customerTwo = CreateCustomer(0);
@@ -56,7 +126,7 @@
             Console.ReadLine();
 
             //allocate a second pdf with the same large buffer size
-            customerSix = null;
+            customerThree = null;
             
             Console.WriteLine("Take a snapshot and verify there is fragmentation in the middle");
             Console.ReadLine();
@@ -64,7 +134,7 @@
             if (PDFIsBiggerThanStandard())
             {
                 // allocate a second customer which has a larger PDF by 50%, but double that allocation to be 2mb
-                customerSix = CreateCustomer(1000000);
+                customerThree = CreateCustomer(1000000);
             }
 
             Console.WriteLine("Take a snapshot and verify there is no fragmentation");
