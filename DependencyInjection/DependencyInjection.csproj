@@ -107,14 +107,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITransientQueryHandler.cs" />
-    <Compile Include="ITransientService.cs" />
+    <Compile Include="QueryHandlers\ITransientQueryHandler.cs" />
+    <Compile Include="Services\ITransientService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="TransientController.cs" />
-    <Compile Include="TransientQueryHandler.cs" />
-    <Compile Include="TransientService.cs" />
+    <Compile Include="Controllers\TransientController.cs" />
+    <Compile Include="QueryHandlers\TransientQueryHandler.cs" />
+    <Compile Include="Services\TransientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

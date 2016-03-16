@@ -2,6 +2,9 @@
 {
     using System;
 
+    using DependencyInjection.QueryHandlers;
+    using DependencyInjection.Services;
+
     using SimpleInjector;
     using SimpleInjector.Extensions.LifetimeScoping;
 
