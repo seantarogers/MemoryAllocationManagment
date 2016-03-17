@@ -147,6 +147,7 @@
             return true;
         }
 
+
         private static void ShowProgramaticCompactionOfHeap()
         {
             Console.WriteLine("take a snapshot, then press any key to allocate first set of objects");
